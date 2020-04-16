@@ -1,7 +1,7 @@
 {
   "name": "tree-sitter-alv",
-  "version": "0.0.0",
-  "description": "A short description of your language package",
+  "version": "0.1.0",
+  "description": "tree-sitter grammar for the alv livecoding langauge",
   "keywords": [
     "language",
     "grammar",
