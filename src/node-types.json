@@ -16,6 +16,10 @@
           "named": true
         },
         {
+          "type": "head",
+          "named": true
+        },
+        {
           "type": "num",
           "named": true
         },
@@ -40,9 +44,31 @@
     "fields": {}
   },
   {
-    "type": "escape_char",
+    "type": "head",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "cell",
+          "named": true
+        },
+        {
+          "type": "num",
+          "named": true
+        },
+        {
+          "type": "str",
+          "named": true
+        },
+        {
+          "type": "sym",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "num",
@@ -138,11 +164,11 @@
     "named": false
   },
   {
-    "type": "\\",
+    "type": "]",
     "named": false
   },
   {
-    "type": "]",
-    "named": false
+    "type": "escape_char",
+    "named": true
   }
 ]

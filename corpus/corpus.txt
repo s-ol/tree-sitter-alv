@@ -12,14 +12,14 @@ Untagged things
 ---
 
 (source_file
-  (cell (sym) (sym) (sym))
-  (cell (sym) (sym))
-  (cell (sym)
-		(sym) (cell (sym) (str) (num)))
-  (cell (sym)
+  (cell (head (sym)) (sym) (sym))
+  (cell (head (sym)) (sym))
+  (cell (head (sym))
+		(sym) (cell (head (sym)) (str) (num)))
+  (cell (head (sym))
     (str) (str))
-  (cell (sym)
-    (str) (cell (sym) (num) (str))))
+  (cell (head (sym))
+    (str) (cell (head (sym)) (num) (str))))
 
 =============
 Tagged things
@@ -36,14 +36,14 @@ Tagged things
 ---
 
 (source_file
-  (cell (tag) (sym) (sym) (sym))
-  (cell (tag) (sym) (sym))
-  (cell (tag) (sym)
-		(sym) (cell (tag) (sym) (str) (num)))
-  (cell (tag) (sym)
+  (cell (tag) (head (sym)) (sym) (sym))
+  (cell (tag) (head (sym)) (sym))
+  (cell (tag) (head (sym))
+		(sym) (cell (tag) (head (sym)) (str) (num)))
+  (cell (tag) (head (sym))
     (str) (str))
-  (cell (tag) (sym)
-    (str) (cell (tag) (sym) (num) (str))))
+  (cell (tag) (head (sym))
+    (str) (cell (tag) (head (sym)) (num) (str))))
 
 ========
 Comments
@@ -66,7 +66,7 @@ Comments
 (source_file
 	(comment)
 	(cell
-		(sym) (sym) (sym) (sym) (sym)
+		(head (sym)) (sym) (sym) (sym) (sym)
 		(comment)
 		(sym) (sym) (sym))
 	(comment)
@@ -86,7 +86,7 @@ Comments in Cells
 (source_file
 	(cell
 		(comment)
-		(sym) (comment) (comment)
+		(head (sym)) (comment) (comment)
 		(sym)
 		(comment)))
 
@@ -97,7 +97,7 @@ Whitespace
 			cell
 )
 
-( cell     
+( cell
 	with
 space
 )
@@ -109,7 +109,34 @@ space
 ---
 
 (source_file
-	(cell (sym))
-	(cell (sym) (sym) (sym))
-	(cell (sym) (sym))
+	(cell (head (sym)))
+	(cell (head (sym)) (sym) (sym))
+	(cell (head (sym)) (sym))
 	(cell))
+
+=======
+Strings
+=======
+
+"normal string"
+#()
+"string with \" escaped \' quote"
+#()
+'string with \' escaped \" quotes'
+#()
+'string with non-escaped quote \\'
+#()
+"string with non-escaped quote \\"
+
+---
+
+(source_file
+  (str)
+  (comment)
+  (str (escape_char) (escape_char))
+  (comment)
+  (str (escape_char) (escape_char))
+  (comment)
+  (str (escape_char))
+  (comment)
+  (str (escape_char)))

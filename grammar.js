@@ -7,22 +7,14 @@ var str = ($, delim) => {
   )
 };
 
-var exp_list = ($) => {
-  return seq(
-    optional($._sp),
-    optional(seq(
-      $._expression,
-      repeat(seq($._sp, $._expression)),
-      optional($._sp),
-    )),
-  );
-}
-
 module.exports = grammar({
   name: 'alv',
 
   rules: {
-    source_file: $ => exp_list($),
+    source_file: $ => seq(
+      optional($._sp),
+      repeat(seq($._expression, $._sp)),
+    ),
 
      // wc: white-space character
      // sp: whitespace
@@ -76,10 +68,19 @@ module.exports = grammar({
       ']',
     ),
 
+    // wrap head for highlghting
+    head: $ => $._expression,
     cell: $ => seq(
       '(',
       optional($.tag),
-      exp_list($),
+      seq(
+        optional($._sp),
+        optional(seq(
+          $.head,
+          repeat(seq($._sp, $._expression)),
+          optional($._sp),
+        )),
+      ),
       ')',
     ),
   }

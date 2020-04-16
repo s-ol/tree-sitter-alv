@@ -17,49 +17,20 @@
           ]
         },
         {
-          "type": "CHOICE",
-          "members": [
-            {
-              "type": "SEQ",
-              "members": [
-                {
-                  "type": "SYMBOL",
-                  "name": "_expression"
-                },
-                {
-                  "type": "REPEAT",
-                  "content": {
-                    "type": "SEQ",
-                    "members": [
-                      {
-                        "type": "SYMBOL",
-                        "name": "_sp"
-                      },
-                      {
-                        "type": "SYMBOL",
-                        "name": "_expression"
-                      }
-                    ]
-                  }
-                },
-                {
-                  "type": "CHOICE",
-                  "members": [
-                    {
-                      "type": "SYMBOL",
-                      "name": "_sp"
-                    },
-                    {
-                      "type": "BLANK"
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "type": "BLANK"
-            }
-          ]
+          "type": "REPEAT",
+          "content": {
+            "type": "SEQ",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "_expression"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "_sp"
+              }
+            ]
+          }
         }
       ]
     },
@@ -201,21 +172,8 @@
       ]
     },
     "escape_char": {
-      "type": "CHOICE",
-      "members": [
-        {
-          "type": "STRING",
-          "value": "\""
-        },
-        {
-          "type": "STRING",
-          "value": "'"
-        },
-        {
-          "type": "STRING",
-          "value": "\\"
-        }
-      ]
+      "type": "PATTERN",
+      "value": "\\\\[\"'\\\\]"
     },
     "sym": {
       "type": "SEQ",
@@ -385,6 +343,10 @@
         }
       ]
     },
+    "head": {
+      "type": "SYMBOL",
+      "name": "_expression"
+    },
     "cell": {
       "type": "SEQ",
       "members": [
@@ -427,7 +389,7 @@
                   "members": [
                     {
                       "type": "SYMBOL",
-                      "name": "_expression"
+                      "name": "head"
                     },
                     {
                       "type": "REPEAT",
