@@ -47,7 +47,7 @@ module.exports = grammar({
       seq(repeat1($._digit), '.', repeat($._digit)),
       seq(repeat($._digit), '.', repeat1($._digit)),
     ),
-    escape_char: $ => choice('\"', '\'', '\\'),
+    escape_char: $ => /\\["'\\]/,
 
     // atoms
     sym: $ => seq(
