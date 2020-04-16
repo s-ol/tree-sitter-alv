@@ -1,0 +1,22 @@
+{
+  "name": "tree-sitter-alv",
+  "version": "0.0.0",
+  "description": "A short description of your language package",
+  "keywords": [
+    "language",
+    "grammar",
+    "alv"
+  ],
+  "license": "GPL-3.0-only",
+  "repository": "https://github.com/s-ol/tree-sitter-alv",
+  "scripts": {
+    "build": "tree-sitter generate",
+    "test": "tree-sitter test"
+  },
+  "devDependencies": {
+    "tree-sitter-cli": "0.16.5"
+  },
+  "dependencies": {
+    "nan": "2.14.0"
+  }
+}
