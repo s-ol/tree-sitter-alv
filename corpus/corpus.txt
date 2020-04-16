@@ -1,0 +1,115 @@
+===============
+Untagged things
+===============
+(import* time util)
+(import osc)
+
+(def *sock* (osc/connect 'localhost' 9000))
+
+(osc/sync "/spam" "start")
+(osc/send '/spam' (every 0.5 "hello"))
+
+---
+
+(source_file
+  (cell (sym) (sym) (sym))
+  (cell (sym) (sym))
+  (cell (sym)
+		(sym) (cell (sym) (str) (num)))
+  (cell (sym)
+    (str) (str))
+  (cell (sym)
+    (str) (cell (sym) (num) (str))))
+
+=============
+Tagged things
+=============
+
+([1]import* time util)
+([2]import osc)
+
+([3]def *sock* ([4]osc/connect 'localhost' 9000))
+
+([8]osc/sync "/spam" "start")
+([5]osc/send '/spam' ([6]every 0.5 "hello"))
+
+---
+
+(source_file
+  (cell (tag) (sym) (sym) (sym))
+  (cell (tag) (sym) (sym))
+  (cell (tag) (sym)
+		(sym) (cell (tag) (sym) (str) (num)))
+  (cell (tag) (sym)
+    (str) (str))
+  (cell (tag) (sym)
+    (str) (cell (tag) (sym) (num) (str))))
+
+========
+Comments
+========
+#(file starts with comment)
+(then there is a cell
+	#(with a comment)
+  in the middle)
+
+#(comments can have (parenthesis)
+	(nested (parenthesis)) and also
+	#(nested comments) inside.)
+
+#(comments also go in-between)
+
+#(or at the end)
+
+---
+
+(source_file
+	(comment)
+	(cell
+		(sym) (sym) (sym) (sym) (sym)
+		(comment)
+		(sym) (sym) (sym))
+	(comment)
+	(comment)
+	(comment))
+
+=================
+Comments in Cells
+=================
+(#(head of cell)
+	first #(middle) #(middle 2)
+	second
+	#(end of cell))
+
+---
+
+(source_file
+	(cell
+		(comment)
+		(sym) (comment) (comment)
+		(sym)
+		(comment)))
+
+==========
+Whitespace
+==========
+  (
+			cell
+)
+
+( cell     
+	with
+space
+)
+
+(tight cell)
+
+()
+
+---
+
+(source_file
+	(cell (sym))
+	(cell (sym) (sym) (sym))
+	(cell (sym) (sym))
+	(cell))
