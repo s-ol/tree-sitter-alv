@@ -7,7 +7,7 @@
     "grammar",
     "alv"
   ],
-  "license": "GPL-3.0-only",
+  "license": "MIT",
   "repository": "https://github.com/s-ol/tree-sitter-alv",
   "scripts": {
     "build": "tree-sitter generate",
