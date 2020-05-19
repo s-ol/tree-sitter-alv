@@ -32,7 +32,7 @@ module.exports = grammar({
     comment: $ => seq('#', $._comment_contents),
 
     // pieces for atom definitions
-    _first: $ => /[a-zA-Z-_+*\/\.!?=%]/,
+    _first: $ => /[a-zA-Z-_+*\/\.=~!?%]/,
     _digit: $ => /[0-9]/,
     _int: $ => prec(2, repeat1($._digit)),
     _float: $ => choice(
