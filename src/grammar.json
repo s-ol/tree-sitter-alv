@@ -103,7 +103,7 @@
     },
     "_first": {
       "type": "PATTERN",
-      "value": "[a-zA-Z-_+*\\/\\.!?=%]"
+      "value": "[a-zA-Z-_+*\\/\\.=~!?%]"
     },
     "_digit": {
       "type": "PATTERN",
@@ -442,6 +442,7 @@
     }
   ],
   "conflicts": [],
+  "precedences": [],
   "externals": [],
   "inline": [],
   "supertypes": []

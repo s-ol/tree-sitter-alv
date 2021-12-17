@@ -14,9 +14,10 @@
     "test": "tree-sitter test"
   },
   "devDependencies": {
-    "tree-sitter-cli": "0.16.5"
+    "tree-sitter-cli": "0.20.1"
   },
   "dependencies": {
-    "nan": "2.14.0"
-  }
+    "nan": "2.15.0"
+  },
+  "main": "bindings/node"
 }
