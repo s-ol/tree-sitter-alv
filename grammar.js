@@ -48,12 +48,6 @@ module.exports = grammar({
     comment: $ => choice($._comment_line, $._comment_cell),
 
     // pieces for atom definitions
-    _first: $ => prec(1, choice(
-      /[a-zA-Z]/,
-      '-', '_', '+', '*', '^',
-      '%', '/', '.', '=', '~',
-      '!', '?', '>', '<',
-    )),
     _int: $ => token(prec(2, repeat1(/[0-9]/))),
     _fract: $ => seq($._int, '/', $._int),
     _float: $ => choice(
@@ -63,10 +57,20 @@ module.exports = grammar({
     escape_char: $ => token(prec(1, choice('\\"', "\\'", '\\\\', '\\$'))),
 
     // atoms
-    sym: $ => seq(
-      $._first,
-      repeat(choice($._first, $._int)),
-    ),
+    sym: $=> token(seq(
+      choice(
+        /[a-zA-Z]/,
+        '-', '_', '+', '*', '^',
+        '%', '/', '.', '=', '~',
+        '!', '?', '>', '<',
+      ),
+      repeat(choice(
+        /[0-9a-zA-Z]/,
+        '-', '_', '+', '*', '^',
+        '%', '/', '.', '=', '~',
+        '!', '?', '>', '<',
+      )),
+    )),
     num: $ => seq(
       optional('-'),
       choice($._float, $._fract, $._int),

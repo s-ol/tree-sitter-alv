@@ -167,11 +167,6 @@
     }
   },
   {
-    "type": "sym",
-    "named": true,
-    "fields": {}
-  },
-  {
     "type": "tag",
     "named": true,
     "fields": {}
@@ -232,10 +227,6 @@
     }
   },
   {
-    "type": "!",
-    "named": false
-  },
-  {
     "type": "\"",
     "named": false
   },
@@ -245,10 +236,6 @@
   },
   {
     "type": "$",
-    "named": false
-  },
-  {
-    "type": "%",
     "named": false
   },
   {
@@ -264,14 +251,6 @@
     "named": false
   },
   {
-    "type": "*",
-    "named": false
-  },
-  {
-    "type": "+",
-    "named": false
-  },
-  {
     "type": "-",
     "named": false
   },
@@ -284,22 +263,6 @@
     "named": false
   },
   {
-    "type": "<",
-    "named": false
-  },
-  {
-    "type": "=",
-    "named": false
-  },
-  {
-    "type": ">",
-    "named": false
-  },
-  {
-    "type": "?",
-    "named": false
-  },
-  {
     "type": "[",
     "named": false
   },
@@ -308,15 +271,11 @@
     "named": false
   },
   {
-    "type": "^",
-    "named": false
-  },
-  {
-    "type": "_",
-    "named": false
-  },
-  {
     "type": "escape_char",
+    "named": true
+  },
+  {
+    "type": "sym",
     "named": true
   },
   {
@@ -325,10 +284,6 @@
   },
   {
     "type": "}",
-    "named": false
-  },
-  {
-    "type": "~",
     "named": false
   }
 ]

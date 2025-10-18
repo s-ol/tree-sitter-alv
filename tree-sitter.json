@@ -10,7 +10,9 @@
         "alv"
       ],
       "injection-regex": "^alv$",
-      "class-name": "TreeSitterAlv"
+      "class-name": "TreeSitterAlv",
+      "highlights": "queries/highlights.scm",
+      "locals": "queries/locals.scm"
     }
   ],
   "metadata": {
