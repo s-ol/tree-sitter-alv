@@ -1,4 +1,10 @@
-var str = ($, delim) => {
+/**
+ * @file experimental livecoding environment with persistent expressions
+ * @author s-ol bekic
+ * @license MIT
+ */
+
+const str = ($, delim) => {
   var not_delim = new RegExp('[^' + delim + ']');
   return seq(
     delim,
@@ -14,10 +20,14 @@ module.exports = grammar({
   name: 'alv',
 
   extras: $ => [],
+  supertypes: $ => [
+    $.atom,
+    $.expression,
+  ],
   rules: {
     source_file: $ => seq(
       optional($._sp),
-      repeat(seq($._expression, $._sp)),
+      repeat(seq($.expression, $._sp)),
     ),
 
      // wc: white-space character
@@ -27,76 +37,97 @@ module.exports = grammar({
       repeat1(choice($.comment, $._wc)),
     ),
 
-    // comment_nested: pair of braces
+    // comments
     _comment_contents: $ => seq(
       '(',
       repeat(choice($._comment_contents, /[^)]/)),
       ')',
     ),
-    // comment: $ => seq('#', $._comment_contents),
     _comment_cell: $ => seq('#', $._comment_contents),
     _comment_line: $ => /##.*?\n/,
     comment: $ => choice($._comment_line, $._comment_cell),
 
     // pieces for atom definitions
-    _first: $ => /[a-zA-Z\-_+*\/\.=~!?%]/,
-    _digit: $ => /[0-9]/,
-    _int: $ => prec(2, repeat1($._digit)),
+    _first: $ => prec(1, choice(
+      /[a-zA-Z]/,
+      '-', '_', '+', '*', '^',
+      '%', '/', '.', '=', '~',
+      '!', '?', '>', '<',
+    )),
+    _int: $ => token(prec(2, repeat1(/[0-9]/))),
+    _fract: $ => seq($._int, '/', $._int),
     _float: $ => choice(
-      seq(repeat1($._digit), '.', repeat($._digit)),
-      seq(repeat($._digit), '.', repeat1($._digit)),
+      seq($._int, '.', optional($._int)),
+      seq('.', $._int),
     ),
     escape_char: $ => token(prec(1, choice('\\"', "\\'", '\\\\', '\\$'))),
 
     // atoms
     sym: $ => seq(
       $._first,
-      repeat(choice($._first, $._digit)),
+      repeat(choice($._first, $._int)),
     ),
     num: $ => seq(
       optional('-'),
-      choice($._float, $._int),
+      choice($._float, $._fract, $._int),
     ),
     str: $ => choice(
       str($, '"'),
       str($, '\''),
     ),
+    atom: $ => choice($.num, $.sym, $.str),
 
-    tpl_subst: $ => seq('$', $._expression),
+    // cells
+    tag: $ => prec(10, seq(
+      '[', $._int, ']',
+    )),
+
+    cell: $ => seq(
+      '(',
+      field('tag', optional($.tag)),
+      optional($._sp),
+      optional(seq(
+        field('head', $.expression),
+        repeat(seq($._sp, $.expression)),
+        optional($._sp),
+      )),
+      ')',
+    ),
+    array: $ => seq(
+      '[',
+      optional($._sp),
+      optional(seq(
+        $.expression,
+        repeat(seq($._sp, $.expression)),
+        optional($._sp),
+      )),
+      ']',
+    ),
+    struct: $ => seq(
+      '{',
+      optional($._sp),
+      optional(seq(
+        $.expression,
+        repeat(seq($._sp, $.expression)),
+        optional($._sp),
+      )),
+      '}',
+    ),
+
+    tpl_subst: $ => seq('$', $.expression),
     tplstr: $ => seq(
       '$',
-      optional($.tag),
-      field($.sym, 'head'),
+      field('tag', optional($.tag)),
+      field('head', $.sym),
       '"',
       repeat(choice($.escape_char, $.tpl_subst, /[^"]/)),
       '"',
     ),
-    _atom: $ => choice($.sym, $.num, $.str),
 
     // expression: anything that has a value
     // exp_list: list of expressions (potentially empty)
     // with optional leading and trailing whitespace
     // and required whitespace between expressions
-    _expression: $ => choice($._atom, $.cell, $.tplstr),
-
-    tag: $ => seq(
-      '[',
-      repeat1($._digit),
-      ']',
-    ),
-
-    cell: $ => seq(
-      '(',
-      optional($.tag),
-      seq(
-        optional($._sp),
-        optional(seq(
-          field($._expression, 'head'),
-          repeat(seq($._sp, $._expression)),
-          optional($._sp),
-        )),
-      ),
-      ')',
-    ),
+    expression: $ => choice($.atom, $.cell, $.array, $.struct, $.tplstr),
   }
 });

@@ -6,7 +6,7 @@ Test things
 ---
 
 (source_file
-  (cell (head (sym)) (sym)))
+  (cell head: (sym) (sym)))
 
 ===============
 Untagged things
@@ -22,14 +22,15 @@ Untagged things
 ---
 
 (source_file
-  (cell (head (sym)) (sym) (sym))
-  (cell (head (sym)) (sym))
-  (cell (head (sym))
-		(sym) (cell (head (sym)) (str) (num)))
-  (cell (head (sym))
+  (cell head: (sym) (sym) (sym))
+  (cell head: (sym) (sym))
+  (cell head: (sym)
+		(sym) (cell head: (sym) (str) (num)))
+  (cell
+    head: (sym)
     (str) (str))
-  (cell (head (sym))
-    (str) (cell (head (sym)) (num) (str))))
+  (cell head: (sym)
+    (str) (cell head: (sym) (num) (str))))
 
 =============
 Tagged things
@@ -46,14 +47,14 @@ Tagged things
 ---
 
 (source_file
-  (cell (tag) (head (sym)) (sym) (sym))
-  (cell (tag) (head (sym)) (sym))
-  (cell (tag) (head (sym))
-		(sym) (cell (tag) (head (sym)) (str) (num)))
-  (cell (tag) (head (sym))
+  (cell tag: (tag) head: (sym) (sym) (sym))
+  (cell tag: (tag) head: (sym) (sym))
+  (cell tag: (tag) head: (sym)
+		(sym) (cell tag: (tag) head: (sym) (str) (num)))
+  (cell tag: (tag) head: (sym)
     (str) (str))
-  (cell (tag) (head (sym))
-    (str) (cell (tag) (head (sym)) (num) (str))))
+  (cell tag: (tag) head: (sym)
+    (str) (cell tag: (tag) head: (sym) (num) (str))))
 
 ========
 Comments
@@ -80,7 +81,7 @@ Comments
 	(comment)
 	(comment)
 	(cell
-		(head (sym)) (sym) (sym) (sym) (sym)
+		head: (sym) (sym) (sym) (sym) (sym)
 		(comment)
     (sym) (sym)
     (comment)
@@ -102,7 +103,7 @@ Comments in Cells
 (source_file
 	(cell
 		(comment)
-		(head (sym)) (comment) (comment)
+		head: (sym) (comment) (comment)
 		(sym)
 		(comment)))
 
@@ -125,9 +126,9 @@ space
 ---
 
 (source_file
-	(cell (head (sym)))
-	(cell (head (sym)) (sym) (sym))
-	(cell (head (sym)) (sym))
+	(cell head: (sym))
+	(cell head: (sym) (sym) (sym))
+	(cell head: (sym) (sym))
 	(cell))
 
 =======
@@ -172,9 +173,9 @@ has some $substitutions"
 ---
 
 (source_file
-  (tplstr (head (sym)))
-  (tplstr (tag) (head (sym)))
-  (tplstr (head (sym))
+  (tplstr head: (sym))
+  (tplstr tag: (tag) head: (sym))
+  (tplstr head: (sym)
     (escape_char)
-    (tpl_subst (cell (head (sym)) (num) (num)))
+    (tpl_subst (cell head: (sym) (num) (num)))
     (tpl_subst (sym))))

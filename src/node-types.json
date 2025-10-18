@@ -1,6 +1,50 @@
 [
   {
-    "type": "cell",
+    "type": "atom",
+    "named": true,
+    "subtypes": [
+      {
+        "type": "num",
+        "named": true
+      },
+      {
+        "type": "str",
+        "named": true
+      },
+      {
+        "type": "sym",
+        "named": true
+      }
+    ]
+  },
+  {
+    "type": "expression",
+    "named": true,
+    "subtypes": [
+      {
+        "type": "array",
+        "named": true
+      },
+      {
+        "type": "atom",
+        "named": true
+      },
+      {
+        "type": "cell",
+        "named": true
+      },
+      {
+        "type": "struct",
+        "named": true
+      },
+      {
+        "type": "tplstr",
+        "named": true
+      }
+    ]
+  },
+  {
+    "type": "array",
     "named": true,
     "fields": {},
     "children": {
@@ -8,35 +52,51 @@
       "required": false,
       "types": [
         {
-          "type": "cell",
+          "type": "comment",
           "named": true
         },
+        {
+          "type": "expression",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "cell",
+    "named": true,
+    "fields": {
+      "head": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "expression",
+            "named": true
+          }
+        ]
+      },
+      "tag": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "tag",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
         {
           "type": "comment",
           "named": true
         },
         {
-          "type": "head",
-          "named": true
-        },
-        {
-          "type": "num",
-          "named": true
-        },
-        {
-          "type": "str",
-          "named": true
-        },
-        {
-          "type": "sym",
-          "named": true
-        },
-        {
-          "type": "tag",
-          "named": true
-        },
-        {
-          "type": "tplstr",
+          "type": "expression",
           "named": true
         }
       ]
@@ -46,37 +106,6 @@
     "type": "comment",
     "named": true,
     "fields": {}
-  },
-  {
-    "type": "head",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "cell",
-          "named": true
-        },
-        {
-          "type": "num",
-          "named": true
-        },
-        {
-          "type": "str",
-          "named": true
-        },
-        {
-          "type": "sym",
-          "named": true
-        },
-        {
-          "type": "tplstr",
-          "named": true
-        }
-      ]
-    }
   },
   {
     "type": "num",
@@ -93,27 +122,11 @@
       "required": false,
       "types": [
         {
-          "type": "cell",
-          "named": true
-        },
-        {
           "type": "comment",
           "named": true
         },
         {
-          "type": "num",
-          "named": true
-        },
-        {
-          "type": "str",
-          "named": true
-        },
-        {
-          "type": "sym",
-          "named": true
-        },
-        {
-          "type": "tplstr",
+          "type": "expression",
           "named": true
         }
       ]
@@ -129,6 +142,25 @@
       "types": [
         {
           "type": "escape_char",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "struct",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "comment",
+          "named": true
+        },
+        {
+          "type": "expression",
           "named": true
         }
       ]
@@ -153,23 +185,7 @@
       "required": true,
       "types": [
         {
-          "type": "cell",
-          "named": true
-        },
-        {
-          "type": "num",
-          "named": true
-        },
-        {
-          "type": "str",
-          "named": true
-        },
-        {
-          "type": "sym",
-          "named": true
-        },
-        {
-          "type": "tplstr",
+          "type": "expression",
           "named": true
         }
       ]
@@ -178,21 +194,34 @@
   {
     "type": "tplstr",
     "named": true,
-    "fields": {},
+    "fields": {
+      "head": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "sym",
+            "named": true
+          }
+        ]
+      },
+      "tag": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "tag",
+            "named": true
+          }
+        ]
+      }
+    },
     "children": {
       "multiple": true,
-      "required": true,
+      "required": false,
       "types": [
         {
           "type": "escape_char",
-          "named": true
-        },
-        {
-          "type": "head",
-          "named": true
-        },
-        {
-          "type": "tag",
           "named": true
         },
         {
@@ -201,6 +230,10 @@
         }
       ]
     }
+  },
+  {
+    "type": "!",
+    "named": false
   },
   {
     "type": "\"",
@@ -212,6 +245,10 @@
   },
   {
     "type": "$",
+    "named": false
+  },
+  {
+    "type": "%",
     "named": false
   },
   {
@@ -227,11 +264,39 @@
     "named": false
   },
   {
+    "type": "*",
+    "named": false
+  },
+  {
+    "type": "+",
+    "named": false
+  },
+  {
     "type": "-",
     "named": false
   },
   {
     "type": ".",
+    "named": false
+  },
+  {
+    "type": "/",
+    "named": false
+  },
+  {
+    "type": "<",
+    "named": false
+  },
+  {
+    "type": "=",
+    "named": false
+  },
+  {
+    "type": ">",
+    "named": false
+  },
+  {
+    "type": "?",
     "named": false
   },
   {
@@ -243,7 +308,27 @@
     "named": false
   },
   {
+    "type": "^",
+    "named": false
+  },
+  {
+    "type": "_",
+    "named": false
+  },
+  {
     "type": "escape_char",
     "named": true
+  },
+  {
+    "type": "{",
+    "named": false
+  },
+  {
+    "type": "}",
+    "named": false
+  },
+  {
+    "type": "~",
+    "named": false
   }
 ]
