@@ -1,4 +1,14 @@
 ===============
+Test things
+===============
+(import osc)
+
+---
+
+(source_file
+  (cell (head (sym)) (sym)))
+
+===============
 Untagged things
 ===============
 (import* time util)
@@ -48,16 +58,19 @@ Tagged things
 ========
 Comments
 ========
-#(file starts with comment)
+#(file starts with block comment)
+## followed by line comment
 (then there is a cell
-	#(with a comment)
+	#(with)
+  two different
+  ## kinds of comments
   in the middle)
 
 #(comments can have (parenthesis)
 	(nested (parenthesis)) and also
 	#(nested comments) inside.)
 
-#(comments also go in-between)
+## comments :) also go (in-)between
 
 #(or at the end)
 
@@ -65,9 +78,12 @@ Comments
 
 (source_file
 	(comment)
+	(comment)
 	(cell
 		(head (sym)) (sym) (sym) (sym) (sym)
 		(comment)
+    (sym) (sym)
+    (comment)
 		(sym) (sym) (sym))
 	(comment)
 	(comment)
@@ -140,3 +156,25 @@ Strings
   (str (escape_char))
   (comment)
   (str (escape_char)))
+
+================
+Template Strings
+================
+
+$head"simple string"
+$[12]tagged""
+
+$sym"
+this one is \"
+longer $(and 1 2)
+has some $substitutions"
+
+---
+
+(source_file
+  (tplstr (head (sym)))
+  (tplstr (tag) (head (sym)))
+  (tplstr (head (sym))
+    (escape_char)
+    (tpl_subst (cell (head (sym)) (num) (num)))
+    (tpl_subst (sym))))
