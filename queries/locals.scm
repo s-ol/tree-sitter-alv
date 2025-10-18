@@ -1,25 +1,25 @@
-(sym) @local.reference
+(symbol) @local.reference
 
-((cell head:(sym) @function) @local.scope
+((cell head:(symbol) @function) @local.scope
  (#any-of? @function "do" "export" "fn" "defn" "loop"))
 
 ((cell
-  head:(sym) @function .
-  (sym)+ @local.definition)
+  head:(symbol) @function .
+  ((symbol) @local.definition @variable . (expression) .)+)
+ (#eq? @function "def"))
+
+((cell
+  head:(symbol) @function .
+  (symbol)+ @local.definition @variable)
  (#eq? @function "import"))
 
 ((cell
-  head:(sym) @function .
-  (array (sym)+ @local.definition))
+  head:(symbol) @function .
+  (array (symbol)+ @local.definition @variable.parameter))
  (#eq? @function "fn"))
 
 ((cell
-  head:(sym) @function .
-  (sym) .
-  (array (sym)+ @local.definition))
+  head:(symbol) @function .
+  (symbol) .
+  (array (symbol)+ @local.definition @variable.parameter))
  (#eq? @function "defn"))
-
-((cell
-  head:(sym) @function .
-  ((sym) @local.definition . (expression) .)+)
- (#eq? @function "def"))

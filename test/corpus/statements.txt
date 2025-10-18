@@ -6,7 +6,7 @@ Test things
 ---
 
 (source_file
-  (cell head: (sym) (sym)))
+  (cell head: (symbol) (symbol)))
 
 ===============
 Untagged things
@@ -22,15 +22,15 @@ Untagged things
 ---
 
 (source_file
-  (cell head: (sym) (sym) (sym))
-  (cell head: (sym) (sym))
-  (cell head: (sym)
-		(sym) (cell head: (sym) (str) (num)))
+  (cell head: (symbol) (symbol) (symbol))
+  (cell head: (symbol) (symbol))
+  (cell head: (symbol)
+		(symbol) (cell head: (symbol) (string) (number)))
   (cell
-    head: (sym)
-    (str) (str))
-  (cell head: (sym)
-    (str) (cell head: (sym) (num) (str))))
+    head: (symbol)
+    (string) (string))
+  (cell head: (symbol)
+    (string) (cell head: (symbol) (number) (string))))
 
 =============
 Tagged things
@@ -47,14 +47,14 @@ Tagged things
 ---
 
 (source_file
-  (cell tag: (tag) head: (sym) (sym) (sym))
-  (cell tag: (tag) head: (sym) (sym))
-  (cell tag: (tag) head: (sym)
-		(sym) (cell tag: (tag) head: (sym) (str) (num)))
-  (cell tag: (tag) head: (sym)
-    (str) (str))
-  (cell tag: (tag) head: (sym)
-    (str) (cell tag: (tag) head: (sym) (num) (str))))
+  (cell tag: (tag) head: (symbol) (symbol) (symbol))
+  (cell tag: (tag) head: (symbol) (symbol))
+  (cell tag: (tag) head: (symbol)
+		(symbol) (cell tag: (tag) head: (symbol) (string) (number)))
+  (cell tag: (tag) head: (symbol)
+    (string) (string))
+  (cell tag: (tag) head: (symbol)
+    (string) (cell tag: (tag) head: (symbol) (number) (string))))
 
 ========
 Comments
@@ -81,11 +81,11 @@ Comments
 	(comment)
 	(comment)
 	(cell
-		head: (sym) (sym) (sym) (sym) (sym)
+		head: (symbol) (symbol) (symbol) (symbol) (symbol)
 		(comment)
-    (sym) (sym)
+    (symbol) (symbol)
     (comment)
-		(sym) (sym) (sym))
+		(symbol) (symbol) (symbol))
 	(comment)
 	(comment)
 	(comment))
@@ -103,8 +103,8 @@ Comments in Cells
 (source_file
 	(cell
 		(comment)
-		head: (sym) (comment) (comment)
-		(sym)
+		head: (symbol) (comment) (comment)
+		(symbol)
 		(comment)))
 
 ==========
@@ -126,9 +126,9 @@ space
 ---
 
 (source_file
-	(cell head: (sym))
-	(cell head: (sym) (sym) (sym))
-	(cell head: (sym) (sym))
+	(cell head: (symbol))
+	(cell head: (symbol) (symbol) (symbol))
+	(cell head: (symbol) (symbol))
 	(cell))
 
 =======
@@ -148,15 +148,15 @@ Strings
 ---
 
 (source_file
-  (str)
+  (string)
   (comment)
-  (str (escape_char) (escape_char))
+  (string (escape_char) (escape_char))
   (comment)
-  (str (escape_char) (escape_char))
+  (string (escape_char) (escape_char))
   (comment)
-  (str (escape_char))
+  (string (escape_char))
   (comment)
-  (str (escape_char)))
+  (string (escape_char)))
 
 ================
 Template Strings
@@ -165,7 +165,7 @@ Template Strings
 $head"simple string"
 $[12]tagged""
 
-$sym"
+$symbol"
 this one is \"
 longer $(and 1 2)
 has some $substitutions"
@@ -173,9 +173,9 @@ has some $substitutions"
 ---
 
 (source_file
-  (tplstr head: (sym))
-  (tplstr tag: (tag) head: (sym))
-  (tplstr head: (sym)
+  (template_string head: (symbol))
+  (template_string tag: (tag) head: (symbol))
+  (template_string head: (symbol)
     (escape_char)
-    (tpl_subst (cell head: (sym) (num) (num)))
-    (tpl_subst (sym))))
+    (substitution (cell head: (symbol) (number) (number)))
+    (substitution (symbol))))

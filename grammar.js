@@ -57,7 +57,7 @@ module.exports = grammar({
     escape_char: $ => token(prec(1, choice('\\"', "\\'", '\\\\', '\\$'))),
 
     // atoms
-    sym: $=> token(seq(
+    symbol: $=> token(seq(
       choice(
         /[a-zA-Z]/,
         '-', '_', '+', '*', '^',
@@ -71,15 +71,15 @@ module.exports = grammar({
         '!', '?', '>', '<',
       )),
     )),
-    num: $ => seq(
+    number: $ => seq(
       optional('-'),
       choice($._float, $._fract, $._int),
     ),
-    str: $ => choice(
+    string: $ => choice(
       str($, '"'),
       str($, '\''),
     ),
-    atom: $ => choice($.num, $.sym, $.str),
+    atom: $ => choice($.number, $.symbol, $.string),
 
     // cells
     tag: $ => prec(10, seq(
@@ -118,13 +118,13 @@ module.exports = grammar({
       '}',
     ),
 
-    tpl_subst: $ => seq('$', $.expression),
-    tplstr: $ => seq(
+    substitution: $ => seq('$', $.expression),
+    template_string: $ => seq(
       '$',
       field('tag', optional($.tag)),
-      field('head', $.sym),
+      field('head', $.symbol),
       '"',
-      repeat(choice($.escape_char, $.tpl_subst, /[^"]/)),
+      repeat(choice($.escape_char, $.substitution, /[^"]/)),
       '"',
     ),
 
@@ -132,6 +132,6 @@ module.exports = grammar({
     // exp_list: list of expressions (potentially empty)
     // with optional leading and trailing whitespace
     // and required whitespace between expressions
-    expression: $ => choice($.atom, $.cell, $.array, $.struct, $.tplstr),
+    expression: $ => choice($.atom, $.cell, $.array, $.struct, $.template_string),
   }
 });

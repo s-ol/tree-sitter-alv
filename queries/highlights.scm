@@ -1,23 +1,24 @@
-(str) @string
-(num) @number
+(string) @string
+(number) @number
 
 (comment) @comment
 
 (cell
   "(" @punctuation
   (tag) @punctuation
-  head:(sym) @function
+  head:(symbol) @function
   ")" @punctuation)
-(tplstr
+(template_string
   (tag) @punctuation
-  head:(sym) @function
-  (tpl_subst
-    "$" @punctuation.special) @embedded
+  head:(symbol) @function
+  (substitution
+    "$" @punctuation.special
+    (symbol) @punctuation.special) @embedded
 ) @string
 
 (escape_char) @escape
 
-((sym) @constant.builtin
+((symbol) @constant.builtin
   (#any-of? @constant.builtin
     "!"
     "->"

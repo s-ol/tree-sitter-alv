@@ -4,15 +4,15 @@
     "named": true,
     "subtypes": [
       {
-        "type": "num",
+        "type": "number",
         "named": true
       },
       {
-        "type": "str",
+        "type": "string",
         "named": true
       },
       {
-        "type": "sym",
+        "type": "symbol",
         "named": true
       }
     ]
@@ -38,7 +38,7 @@
         "named": true
       },
       {
-        "type": "tplstr",
+        "type": "template_string",
         "named": true
       }
     ]
@@ -108,7 +108,7 @@
     "fields": {}
   },
   {
-    "type": "num",
+    "type": "number",
     "named": true,
     "fields": {}
   },
@@ -133,7 +133,7 @@
     }
   },
   {
-    "type": "str",
+    "type": "string",
     "named": true,
     "fields": {},
     "children": {
@@ -167,12 +167,7 @@
     }
   },
   {
-    "type": "tag",
-    "named": true,
-    "fields": {}
-  },
-  {
-    "type": "tpl_subst",
+    "type": "substitution",
     "named": true,
     "fields": {},
     "children": {
@@ -187,7 +182,12 @@
     }
   },
   {
-    "type": "tplstr",
+    "type": "tag",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "template_string",
     "named": true,
     "fields": {
       "head": {
@@ -195,7 +195,7 @@
         "required": true,
         "types": [
           {
-            "type": "sym",
+            "type": "symbol",
             "named": true
           }
         ]
@@ -220,7 +220,7 @@
           "named": true
         },
         {
-          "type": "tpl_subst",
+          "type": "substitution",
           "named": true
         }
       ]
@@ -275,7 +275,7 @@
     "named": true
   },
   {
-    "type": "sym",
+    "type": "symbol",
     "named": true
   },
   {
